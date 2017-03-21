@@ -1,4 +1,4 @@
-package org.hisoka;
+package org.hisoka.base;
 
 import org.apache.zookeeper.*;
 import org.slf4j.Logger;

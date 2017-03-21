@@ -9,9 +9,9 @@
     <version>0.0.1-SNAPSHOT</version>
 
     <properties>
-        <jetty-maven-plugin.version>9.4.2.v20170220</jetty-maven-plugin.version>
         <junit.version>4.12</junit.version>
-        <zookeeper.version>3.4.9</zookeeper.version>
+        <!--<zookeeper.version>3.4.9</zookeeper.version>-->
+        <curator.version>3.3.0</curator.version>
 
         <slf4j-api.version>1.7.13</slf4j-api.version>
         <log4j.version>2.4.1</log4j.version>
@@ -46,7 +46,7 @@
             <!--<scope>test</scope>-->
         </dependency>
 
-        <dependency>
+        <!--<dependency>
             <groupId>org.apache.zookeeper</groupId>
             <artifactId>zookeeper</artifactId>
             <version>${zookeeper.version}</version>
@@ -64,8 +64,27 @@
                     <artifactId>log4j</artifactId>
                 </exclusion>
             </exclusions>
-        </dependency>
+        </dependency>-->
 
+        <dependency>
+            <groupId>org.apache.curator</groupId>
+            <artifactId>curator-recipes</artifactId>
+            <version>${curator.version}</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.slf4j</groupId>
+                    <artifactId>slf4j-api</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.slf4j</groupId>
+                    <artifactId>slf4j-log4j12</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>log4j</groupId>
+                    <artifactId>log4j</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
 
         <!-- ===================== /log api, now use log4j-2  =================== -->
         <!-- slf4j-api -->
