@@ -1,4 +1,4 @@
-package org.hisoka.distributed.lock;
+package org.hisoka.distribute.lock;
 
 import org.apache.curator.framework.CuratorFramework;
 import org.apache.curator.framework.recipes.locks.InterProcessMutex;

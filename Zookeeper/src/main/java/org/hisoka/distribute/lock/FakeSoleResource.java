@@ -1,4 +1,4 @@
-package org.hisoka.distributed.lock;
+package org.hisoka.distribute.lock;
 
 import java.util.concurrent.atomic.AtomicBoolean;
 
@@ -22,7 +22,7 @@ public class FakeSoleResource {
             throw new IllegalStateException("Needs to be used by only one client at a time");
         }
         try {
-            Thread.sleep((long) (3 * Math.random()));
+            Thread.sleep(100);
         } finally {
             resou.set(false);
         }

@@ -6,7 +6,7 @@ import org.slf4j.LoggerFactory;
 
 /**
  * @author Hinsteny
- * @Describtion
+ * @Describtion 基于队列的生产者与消费者实现
  * @date 2017/3/21
  * @copyright: 2016 All rights reserved.
  */

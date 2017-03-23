@@ -9,14 +9,19 @@ import org.apache.zookeeper.KeeperException;
 import org.apache.zookeeper.WatchedEvent;
 import org.apache.zookeeper.Watcher;
 import org.apache.zookeeper.ZooKeeper;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * @author Hinsteny
- * @Describtion
+ * @Describtion 检测某个节点是否存在从而对某个应用程序(接管输入输出)的启停做控制
  * @date 2017/3/21
  * @copyright: 2016 All rights reserved.
  */
-public class Executor implements Watcher, Runnable, DataMonitor.DataMonitorListener {
+public class Executor implements Watcher, Runnable, DataMonitorListener {
+
+    protected static final Logger logger = LoggerFactory.getLogger(Executor.class);
+
     String znode;
 
     DataMonitor dm;
@@ -42,8 +47,7 @@ public class Executor implements Watcher, Runnable, DataMonitor.DataMonitorListe
      */
     public static void main(String[] args) {
         if (args.length < 4) {
-            System.err
-                    .println("USAGE: Executor hostPort znode filename program [args ...]");
+            logger.error("USAGE: Executor hostPort znode filename program [args ...]");
             System.exit(2);
         }
         String hostPort = args[0];
@@ -61,7 +65,7 @@ public class Executor implements Watcher, Runnable, DataMonitor.DataMonitorListe
     /***************************************************************************
      * We do process any events ourselves, we just need to forward them on.
      *
-     * @see org.apache.zookeeper.Watcher#process(org.apache.zookeeper.proto.WatcherEvent)
+     * @see org.apache.zookeeper.Watcher #process(org.apache.zookeeper.proto.WatcherEvent)
      */
     public void process(WatchedEvent event) {
         dm.process(event);
@@ -111,7 +115,7 @@ public class Executor implements Watcher, Runnable, DataMonitor.DataMonitorListe
     public void exists(byte[] data) {
         if (data == null) {
             if (child != null) {
-                System.out.println("Killing process");
+                logger.info("Killing process");
                 child.destroy();
                 try {
                     child.waitFor();
@@ -121,7 +125,7 @@ public class Executor implements Watcher, Runnable, DataMonitor.DataMonitorListe
             child = null;
         } else {
             if (child != null) {
-                System.out.println("Stopping child");
+                logger.info("Stopping child");
                 child.destroy();
                 try {
                     child.waitFor();
@@ -137,7 +141,7 @@ public class Executor implements Watcher, Runnable, DataMonitor.DataMonitorListe
                 e.printStackTrace();
             }
             try {
-                System.out.println("Starting child");
+                logger.info("Starting child");
                 child = Runtime.getRuntime().exec(exec);
                 new StreamWriter(child.getInputStream(), System.out);
                 new StreamWriter(child.getErrorStream(), System.err);

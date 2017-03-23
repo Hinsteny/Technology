@@ -30,8 +30,7 @@ public class DataMonitor implements Watcher, StatCallback {
 
     byte prevData[];
 
-    public DataMonitor(ZooKeeper zk, String znode, Watcher chainedWatcher,
-                       DataMonitorListener listener) {
+    public DataMonitor(ZooKeeper zk, String znode, Watcher chainedWatcher, DataMonitorListener listener) {
         this.zk = zk;
         this.znode = znode;
         this.chainedWatcher = chainedWatcher;
@@ -41,22 +40,7 @@ public class DataMonitor implements Watcher, StatCallback {
         zk.exists(znode, true, this, null);
     }
 
-    /**
-     * Other classes use the DataMonitor by implementing this method
-     */
-    public interface DataMonitorListener {
-        /**
-         * The existence status of the node has changed.
-         */
-        void exists(byte data[]);
 
-        /**
-         * The ZooKeeper session is no longer valid.
-         *
-         * @param rc the ZooKeeper reason code
-         */
-        void closing(int rc);
-    }
 
     public void process(WatchedEvent event) {
         String path = event.getPath();
@@ -119,8 +103,7 @@ public class DataMonitor implements Watcher, StatCallback {
                 return;
             }
         }
-        if ((b == null && b != prevData)
-                || (b != null && !Arrays.equals(prevData, b))) {
+        if ((b == null && b != prevData) || (b != null && !Arrays.equals(prevData, b))) {
             listener.exists(b);
             prevData = b;
         }

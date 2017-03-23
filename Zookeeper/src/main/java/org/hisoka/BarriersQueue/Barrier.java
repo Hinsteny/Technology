@@ -11,7 +11,7 @@ import java.util.List;
 
 /**
  * @author Hinsteny
- * @Describtion
+ * @Describtion 分布式队列测试, 当队列满队时就全部执行退出队列的操作
  * @date 2017/3/21
  * @copyright: 2016 All rights reserved.
  */
@@ -63,7 +63,6 @@ public class Barrier extends SyncPrimitive {
      * @throws KeeperException
      * @throws InterruptedException
      */
-
     boolean enter() throws KeeperException, InterruptedException {
         zk.create(root + "/" + name, new byte[0], Ids.OPEN_ACL_UNSAFE, CreateMode.EPHEMERAL_SEQUENTIAL);
         while (true) {

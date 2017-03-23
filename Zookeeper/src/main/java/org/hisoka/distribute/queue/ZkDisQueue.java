@@ -1,4 +1,4 @@
-package org.hisoka.distributed.queue;
+package org.hisoka.distribute.queue;
 
 import org.apache.zookeeper.*;
 import org.slf4j.Logger;
@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.UUID;
 
 /**
- * distributed queue example
+ * distribute queue example
  *
  * @Auther hinsteny
  * @Date 2017-03-06

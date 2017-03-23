@@ -8,7 +8,7 @@ import java.util.Random;
 
 /**
  * @author Hinsteny
- * @Describtion
+ * @Describtion 模仿实现队列的进出操作
  * @date 2017/3/21
  * @copyright: 2016 All rights reserved.
  */
@@ -21,10 +21,10 @@ public class BarriersTest {
     }
 
     public static void barrierTest(String args[]) {
-        Barrier b = new Barrier(args[1], "/b1", new Integer(args[2]));
+        Barrier b = new Barrier(args[0], "/b1", new Integer(args[1]));
         try {
             boolean flag = b.enter();
-            logger.info("Entered barrier: " + args[2]);
+            logger.info("Entered barrier: " + args[1]);
             if (!flag) logger.info("Error when entering the barrier");
         } catch (KeeperException e) {
 
