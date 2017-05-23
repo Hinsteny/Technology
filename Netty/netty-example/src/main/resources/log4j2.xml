@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration>
+	<properties>
+		<property name="fileFolder">log</property>
+	</properties>
+
+	<Appenders>
+		<Console name="CONSOLE" target="SYSTEM_OUT">
+			<PatternLayout pattern="[%t] %C (%F:%L) %n%d [%p] %m%n%n" />
+		</Console>
+
+		<RollingFile name="ROLLING_FILE_INFO" fileName="${fileFolder}/logs/info/info.log" filePattern="${fileFolder}/logs/info/info-%d{MM-dd-yyyy}.log">
+			<PatternLayout pattern="[%t] %C (%F:%L) %n%d [%p] %m%n%n" />
+			<Policies>
+				<SizeBasedTriggeringPolicy size="16 KB" />
+			</Policies>
+			<DefaultRolloverStrategy max="4" compressionLevel="0" />
+			<ThresholdFilter level="INFO" onMatch="ACCEPT" onMismatch="DENY"></ThresholdFilter>
+		</RollingFile>
+
+		<RollingFile name="ROLLING_FILE_ERROR" fileName="${fileFolder}/logs/error/error.log" filePattern="${fileFolder}/logs/error/error-%d{MM-dd-yyyy}.log">
+			<PatternLayout pattern="[%t] %C (%F:%L) %n%d [%p] %m%n%n" />
+			<Policies>
+				<SizeBasedTriggeringPolicy size="16 KB" />
+			</Policies>
+			<DefaultRolloverStrategy max="4" compressionLevel="0" />
+			<ThresholdFilter level="ERROR" onMatch="ACCEPT" onMismatch="DENY"></ThresholdFilter>
+		</RollingFile>
+
+		<Async name="ASYNC_FILE_INFO">
+			<AppenderRef ref="ROLLING_FILE_INFO" />
+		</Async>
+
+		<Async name="ASYNC_FILE_ERROR">
+			<AppenderRef ref="ROLLING_FILE_ERROR" />
+		</Async>
+	</Appenders>
+
+	<Loggers>
+		<Logger name="org.springframework" level="INFO" />
+		<Logger name="org.apache" level="ERROR" />
+		<Logger name="org.hinsteny" level="DEBUG"/>
+		<Logger name="io.netty" level="DEBUG"/>
+
+		<Root level="TRACE">
+			<AppenderRef ref="CONSOLE" />
+			<AppenderRef ref="ASYNC_FILE_INFO" />
+			<AppenderRef ref="ASYNC_FILE_ERROR" />
+		</Root>
+	</Loggers>
+</Configuration>

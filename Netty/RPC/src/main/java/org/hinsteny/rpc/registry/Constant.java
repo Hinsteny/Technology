@@ -1,0 +1,15 @@
+package org.hinsteny.rpc.registry;
+
+/**
+ * @author Hinsteny
+ * @Describtion
+ * @date 2017/5/22
+ * @copyright: 2016 All rights reserved.
+ */
+public interface Constant {
+
+    int ZK_SESSION_TIMEOUT = 5000;
+
+    String ZK_REGISTRY_PATH = "/registry";
+    String ZK_DATA_PATH = ZK_REGISTRY_PATH + "/data";
+}
