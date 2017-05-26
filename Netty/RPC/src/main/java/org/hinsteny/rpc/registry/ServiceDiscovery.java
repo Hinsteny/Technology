@@ -5,10 +5,12 @@ import org.apache.zookeeper.WatchedEvent;
 import org.apache.zookeeper.Watcher;
 import org.apache.zookeeper.ZooKeeper;
 import org.hinsteny.rpc.client.ConnectManage;
+import org.hinsteny.rpc.common.Constance;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.CountDownLatch;
@@ -85,14 +87,14 @@ public class ServiceDiscovery {
             List<String> dataList = new ArrayList<>();
             for (String node : nodeList) {
                 byte[] bytes = zk.getData(Constant.ZK_REGISTRY_PATH + "/" + node, false, null);
-                dataList.add(new String(bytes));
+                dataList.add(new String(bytes, Constance.ENCODING));
             }
             logger.debug("node data: {}", dataList);
             this.dataList = dataList;
 
             logger.debug("Service discovery triggered updating connected server node.");
             UpdateConnectedServer();
-        } catch (KeeperException | InterruptedException e) {
+        } catch (KeeperException | InterruptedException | UnsupportedEncodingException e) {
             logger.error("", e);
         }
     }

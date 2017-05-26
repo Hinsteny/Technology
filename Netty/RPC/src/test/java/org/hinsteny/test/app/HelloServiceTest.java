@@ -3,6 +3,7 @@ package org.hinsteny.test.app;
 
 import org.hinsteny.rpc.client.RPCFuture;
 import org.hinsteny.rpc.client.RpcClient;
+import org.hinsteny.rpc.client.RpcClientHandler;
 import org.hinsteny.rpc.proxy.IAsyncObjectProxy;
 import org.hinsteny.test.client.HelloPersonService;
 import org.hinsteny.test.client.HelloService;
@@ -11,6 +12,8 @@ import org.junit.After;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.annotation.Rollback;
 import org.springframework.test.context.ContextConfiguration;
@@ -33,6 +36,8 @@ import static org.hamcrest.core.IsEqual.equalTo;
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = "classpath:client-spring.xml")
 public class HelloServiceTest {
+
+    private static final Logger logger = LoggerFactory.getLogger(RpcClientHandler.class);
 
     @Autowired
     private RpcClient rpcClient;
@@ -100,8 +105,10 @@ public class HelloServiceTest {
         }
     }
 
+    // 执行单个方法测试开启此方法, 如果是单次执行该类中的所有方法, 需要注释此方法
     @After
     public void setTear(){
+        logger.error("Stop client!");
         if(rpcClient != null) {
             rpcClient.stop();
         }

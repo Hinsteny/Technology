@@ -2,10 +2,12 @@ package org.hinsteny.rpc.registry;
 
 import org.apache.zookeeper.*;
 import org.apache.zookeeper.data.Stat;
+import org.hinsteny.rpc.common.Constance;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
 import java.util.concurrent.CountDownLatch;
 
 /**
@@ -72,14 +74,11 @@ public class ServiceRegistry {
 
     private void createNode(ZooKeeper zk, String data) {
         try {
-            byte[] bytes = data.getBytes();
+            byte[] bytes = data.getBytes(Constance.ENCODING);
             String path = zk.create(Constant.ZK_DATA_PATH, bytes, ZooDefs.Ids.OPEN_ACL_UNSAFE, CreateMode.EPHEMERAL_SEQUENTIAL);
-            logger.debug("create zookeeper node ({} => {})", path, data);
-        } catch (KeeperException e) {
+            logger.debug("getRpcServiceClient zookeeper node ({} => {})", path, data);
+        } catch (KeeperException | InterruptedException | UnsupportedEncodingException e) {
             logger.error("", e);
-        }
-        catch (InterruptedException ex){
-            logger.error("", ex);
         }
     }
 }

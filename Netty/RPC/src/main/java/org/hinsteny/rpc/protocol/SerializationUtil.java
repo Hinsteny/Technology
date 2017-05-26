@@ -59,7 +59,7 @@ public class SerializationUtil {
      */
     public static <T> T deserialize(byte[] data, Class<T> cls) {
         try {
-            T message = (T) objenesis.newInstance(cls);
+            T message = objenesis.newInstance(cls);
             Schema<T> schema = getSchema(cls);
             ProtostuffIOUtil.mergeFrom(data, message, schema);
             return message;

@@ -46,6 +46,10 @@ public class RpcServer implements ApplicationContextAware, InitializingBean {
 
     private static ThreadPoolExecutor threadPoolExecutor;
 
+    static {
+        threadPoolExecutor = new ThreadPoolExecutor(16, 16, 600L, TimeUnit.SECONDS, new ArrayBlockingQueue<>(65536));
+    }
+
     public RpcServer(String serverAddress) {
         this.serverAddress = serverAddress;
     }
@@ -105,13 +109,6 @@ public class RpcServer implements ApplicationContextAware, InitializingBean {
     }
 
     public static void submit(Runnable task){
-        if(threadPoolExecutor == null){
-            synchronized (RpcServer.class) {
-                if(threadPoolExecutor == null){
-                    threadPoolExecutor = new ThreadPoolExecutor(16, 16, 600L, TimeUnit.SECONDS, new ArrayBlockingQueue<Runnable>(65536));
-                }
-            }
-        }
         threadPoolExecutor.submit(task);
     }
 }

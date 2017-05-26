@@ -3,6 +3,7 @@ package org.hinsteny.rpc.client;
 import org.hinsteny.rpc.proxy.IAsyncObjectProxy;
 import org.hinsteny.rpc.proxy.ObjectProxy;
 import org.hinsteny.rpc.registry.ServiceDiscovery;
+import org.hinsteny.rpc.service.RpcServiceFactor;
 
 import java.lang.reflect.Proxy;
 import java.util.concurrent.ArrayBlockingQueue;
@@ -18,7 +19,9 @@ import java.util.concurrent.TimeUnit;
 public class RpcClient {
 
     private String serverAddress;
+
     private ServiceDiscovery serviceDiscovery;
+
     private static ThreadPoolExecutor threadPoolExecutor = new ThreadPoolExecutor(16, 16, 600L, TimeUnit.SECONDS, new ArrayBlockingQueue<>(65536));
 
     public RpcClient(String serverAddress) {
@@ -29,13 +32,8 @@ public class RpcClient {
         this.serviceDiscovery = serviceDiscovery;
     }
 
-    @SuppressWarnings("unchecked")
     public static <T> T create(Class<T> interfaceClass) {
-        return (T) Proxy.newProxyInstance(
-                interfaceClass.getClassLoader(),
-                new Class<?>[]{interfaceClass},
-                new ObjectProxy<>(interfaceClass)
-        );
+        return RpcServiceFactor.getServiceInstanse(interfaceClass);
     }
 
     public static <T> IAsyncObjectProxy createAsync(Class<T> interfaceClass) {
