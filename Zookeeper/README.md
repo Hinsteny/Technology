@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream
 # ZooKeeper
 ZooKeeper是一个开源的、高性能的、分布式的分布式应用协调服务; 它提供的服务有配置维护、命名服务、分布式同步、组服务等; 常见的应用场景有一致性协议、集群管理、同步锁、Leader 选举、队列管理等.
 
@@ -121,3 +122,8 @@ All responses to asynchronous methods and watch events are processed on the even
 
 
 
+=======
+# Technology
+
+*** Just do some test for amusing things. By the way, I had reserved example code to review for guys in the future!
+>>>>>>> Stashed changes

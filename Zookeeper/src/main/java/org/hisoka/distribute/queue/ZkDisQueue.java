@@ -106,9 +106,7 @@ public class ZkDisQueue {
                 zk.delete(nodePath, -1);
                 logger.info("Show all node children ===> {}", zk.getChildren("/", true));
             }
-        } catch (KeeperException e) {
-            e.printStackTrace();
-        } catch (InterruptedException e) {
+        } catch (KeeperException | InterruptedException e) {
             e.printStackTrace();
         }
     }

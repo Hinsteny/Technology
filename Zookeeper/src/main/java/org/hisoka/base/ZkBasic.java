@@ -41,9 +41,7 @@ public class ZkBasic {
                 logger.info("get path node {} ===> {}", nodePath, new String(zk.getData(nodePath, false, null)));
                 logger.info("Show all node children ===> {}", zk.getChildren("/", true));
             }
-        } catch (KeeperException e) {
-            e.printStackTrace();
-        } catch (InterruptedException e) {
+        } catch (KeeperException | InterruptedException e) {
             e.printStackTrace();
         }
     }
@@ -65,9 +63,7 @@ public class ZkBasic {
                 logger.info("Show all node children ===> {}", zk.getChildren("/", true));
             }
             flag = true;
-        } catch (KeeperException e) {
-            e.printStackTrace();
-        } catch (InterruptedException e) {
+        } catch (KeeperException | InterruptedException e) {
             e.printStackTrace();
         } finally {
             return flag;
@@ -85,9 +81,7 @@ public class ZkBasic {
                 zk.delete(nodePath, -1);
                 logger.info("Show all node children ===> {}", zk.getChildren("/", true));
             }
-        } catch (KeeperException e) {
-            e.printStackTrace();
-        } catch (InterruptedException e) {
+        } catch (KeeperException | InterruptedException e) {
             e.printStackTrace();
         }
     }
