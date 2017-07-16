@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration>
+	<properties>
+		<property name="fileFolder">./logs/</property>
+        <property name="kafkaTopic">kafka-log</property>
+		<property name="kafkaServer">localhost:9092</property>
+		<property name="kafkaTimeOut">10000</property>
+	</properties>
+
+	<Appenders>
+		<Console name="CONSOLE" target="SYSTEM_OUT">
+			<PatternLayout pattern="[%t] %C (%F:%L) %n%d [%p] %m%n%n" />
+		</Console>
+
+		<Kafka name="KafkaAppender" topic="${kafkaTopic}">
+			<PatternLayout pattern="%d{yyyy-MM-dd HH:mm:ss} [%t] (%F:%L)  - %m%n" />
+			<Property name="bootstrap.servers">${kafkaServer}</Property>
+			<Property name="timeout.ms">${kafkaTimeOut}</Property>
+		</Kafka>
+
+		<RollingFile name="ROLLING_FILE"
+			fileName="${fileFolder}/logs/error/error.log" filePattern="${fileFolder}/logs/error/error-%d{MM-dd-yyyy}.log">
+			<PatternLayout pattern="[%t] %C (%F:%L) %n%d [%p] %m%n%n" />
+			<Policies>
+				<SizeBasedTriggeringPolicy size="16 KB" />
+			</Policies>
+			<DefaultRolloverStrategy max="4" compressionLevel="0" />
+			<ThresholdFilter level="ERROR" onMatch="ACCEPT"
+				onMismatch="DENY"></ThresholdFilter>
+		</RollingFile>
+
+		<Async name="ASYNC">
+			<AppenderRef ref="ROLLING_FILE" />
+		</Async>
+	</Appenders>
+
+	<Loggers>
+		<Logger name="org.apache.zookeeper" level="ERROR" />
+		<Logger name="org.jboss.netty" level="ERROR"/>
+		<Logger name="org.apache.kafka" level="ERROR"/>
+		<Logger name="org.hisoka" level="TRACE"/>
+
+        <AsyncLogger name="async">
+            <AppenderRef ref="KafkaAppender" />
+        </AsyncLogger>
+
+		<Root level="TRACE">
+			<AppenderRef ref="ASYNC" />
+			<AppenderRef ref="CONSOLE" />
+			<AppenderRef ref="KafkaAppender" level="INFO"/>
+		</Root>
+	</Loggers>
+</Configuration>
