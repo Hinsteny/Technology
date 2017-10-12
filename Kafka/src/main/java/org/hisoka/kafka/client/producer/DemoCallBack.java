@@ -6,9 +6,9 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
- * @Auther hinsteny
- * @Desc
- * @Date 2017-05-07
+ * @desc
+ * @author hinsteny
+ * @date 2017-06-06
  * @copyright: 2017 All rights reserved.
  */
 public class DemoCallBack implements Callback {

@@ -1,8 +1,9 @@
 package org.hisoka.trash;
 
 /**
- * @Auther hinsteny
- * @Date 2017-03-12
+ * @desc
+ * @author hinsteny
+ * @date 2017-06-06
  * @copyright: 2017 All rights reserved.
  */
 public class KafkaProperties {

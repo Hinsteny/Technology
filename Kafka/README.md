@@ -30,10 +30,19 @@ Kafka用于构建实时数据管道和流应用程序。它是水平可扩展，
 
 ![kafka-apis](https://cloud.githubusercontent.com/assets/5526657/23831359/9ceaea3e-075a-11e7-97ac-232c4c24ffef.png)
 
-### kafka 服务启停
-1. 先启动zkserver: cd ${root-zkserver}; bin/zkServer.sh start-foreground; (以前端模式启动方便观看控制台输出, 默认zk服务端口为2181)
-2. 启动单体的kafka服务: cd ${root-kafka}; bin/kafka-server-start.sh config/server.properties;
-3. 创建一个kafka的topic: bin/kafka-topics.sh --create --zookeeper localhost:2181 --replication-factor 1 --partitions 1 --topic test
-4. 连接topic,Producer发送消息: bin/kafka-console-producer.sh --broker-list localhost:9092 --topic test
-5. 启动一个customer, 进行消息的消费: bin/kafka-console-consumer.sh --bootstrap-server localhost:9092 --topic test --from-beginning
+### linux kafka 服务启停
+1. 先修改zk的配置文件，修改 **_`config/zookeeper.properties`_** 文件中的zk服务端口和zk持久化文件存储目录
+2. 先启动zkserver: **_cd ${root-zkserver}; bin/zkServer.sh start-foreground_**; (以前端模式启动方便观看控制台输出, 默认zk服务端口为2181)
+3. 启动单体的kafka服务: **_cd ${root-kafka}; bin/kafka-server-start.sh config/server.properties_**;
+4. 创建一个kafka的topic: **_bin/kafka-topics.sh --create --zookeeper localhost:2181 --replication-factor 1 --partitions 1 --topic test_**
+5. 连接topic,Producer发送消息: **_bin/kafka-console-producer.sh --broker-list localhost:9092 --topic test_**
+6. 启动一个customer, 进行消息的消费: **_bin/kafka-console-consumer.sh --bootstrap-server localhost:9092 --topic test --from-beginning_**
+
+### windows kafka 服务启停
+1. 先修改zk的配置文件，修改 **_`config/zookeeper.properties`_** 文件中的zk服务端口和zk持久化文件存储目录
+2. 启动zk，执行 **_.\bin\windows\zookeeper-server-start.bat .\config\zookeeper.properties_**
+3. 启动单体的kafka服务, 指定的zk端口需要和上面第一步中设置的一致: **_.\bin\windows\kafka-server-start.bat .\config\server.properties_**
+4. 创建一个kafka的topic: **_bin\windows\kafka-topics.bat --create --zookeeper localhost:2181 --replication-factor 1 --partitions 1 --topic test_**
+5. 连接topic,Producer发送消息: **_bin\windows\kafka-console-producer.bat --broker-list localhost:9092 --topic test_**
+6. 启动一个customer, 进行消息的消费: **_bin\windows\kafka-console-consumer.bat --bootstrap-server localhost:9092 --topic test --from-beginning_**
 

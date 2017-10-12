@@ -7,9 +7,9 @@ import java.time.LocalDateTime;
 import java.util.Random;
 
 /**
- * @Auther hinsteny
- * @Desc
- * @Date 2017-06-06
+ * @desc
+ * @author hinsteny
+ * @date 2017-06-06
  * @copyright: 2017 All rights reserved.
  */
 public class ProduceLogInfo {

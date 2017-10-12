@@ -14,9 +14,9 @@ import java.util.Collections;
 import java.util.Properties;
 
 /**
- * @Auther hinsteny
- * @Desc
- * @Date 2017-05-16
+ * @desc
+ * @author hinsteny
+ * @date 2017-06-06
  * @copyright: 2017 All rights reserved.
  */
 public class Consumer implements Runnable {
