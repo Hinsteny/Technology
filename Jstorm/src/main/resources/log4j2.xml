@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration>
+	<properties>
+		<!--<property name="fileFolder">/opt/logs/jstorm/</property>-->
+		<property name="fileFolder">D://logs/github/techno/jstorm/</property>
+		<property name="pattern">[%T] %d %C (%F:%L) %n[%p] %m %n</property>
+		<property name="sizeTriggeringPolicy">16 M</property>
+		<property name="filePattern">.%d{yyyy-MM-dd}</property>
+		<property name="frameworkLoggerLevel">ERROR</property>
+		<property name="serviceLoggerLevel">ERROR</property>
+	</properties>
+
+	<Appenders>
+		<Console name="CONSOLE" target="SYSTEM_OUT">
+			<PatternLayout pattern="${pattern}" />
+			<ThresholdFilter level="DEBUG" onMatch="ACCEPT" onMismatch="DENY"></ThresholdFilter>
+		</Console>
+
+		<RollingFile name="ROLLING_FILE_DEBUG" fileName="${fileFolder}debug.log" filePattern="${fileFolder}debug.log${filePattern}">
+			<PatternLayout pattern="${pattern}" />
+			<Policies>
+				<SizeBasedTriggeringPolicy size="${sizeTriggeringPolicy}" />
+			</Policies>
+			<DefaultRolloverStrategy max="4" compressionLevel="0" />
+			<ThresholdFilter level="DEBUG" onMatch="ACCEPT" onMismatch="DENY"></ThresholdFilter>
+		</RollingFile>
+
+		<RollingFile name="ROLLING_FILE_ALL" fileName="${fileFolder}all.log" filePattern="${fileFolder}all.log${filePattern}">
+			<PatternLayout pattern="${pattern}" />
+			<Policies>
+				<SizeBasedTriggeringPolicy size="${sizeTriggeringPolicy}" />
+			</Policies>
+			<DefaultRolloverStrategy max="4" compressionLevel="0" />
+			<ThresholdFilter level="INFO" onMatch="ACCEPT" onMismatch="DENY"></ThresholdFilter>
+		</RollingFile>
+
+	</Appenders>
+
+	<Loggers>
+		<Logger name="org.springframework" level="${frameworkLoggerLevel}" />
+		<Logger name="org.apache" level="${frameworkLoggerLevel}"  />
+		<Logger name="com.google" level="${frameworkLoggerLevel}" />
+		<Logger name="com.alibaba" level="${frameworkLoggerLevel}" />
+		<Logger name="com.hisoka.jstorm" level="${serviceLoggerLevel}" />
+
+		<Root level="${frameworkLoggerLevel}">
+			<AppenderRef ref="CONSOLE" />
+			<AppenderRef ref="ROLLING_FILE_DEBUG" />
+			<AppenderRef ref="ROLLING_FILE_ALL" />
+		</Root>
+	</Loggers>
+</Configuration>
