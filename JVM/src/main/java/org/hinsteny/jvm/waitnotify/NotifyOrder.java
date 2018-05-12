@@ -10,7 +10,7 @@ public class NotifyOrder extends Parent {
 
     public static void main(String[] args) {
         // case one
-//        notifyCase();
+        notifyCase();
         // case two
         notifyAllCase();
     }
@@ -30,7 +30,6 @@ public class NotifyOrder extends Parent {
         Thread notify = buildNotifyThread(lock, buildSleepConsumer(3000));
         notify.start();
     }
-
 
     /**
      * 测试notifyAll: LIFO, 最后进入wait的, 最先被唤醒
