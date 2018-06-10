@@ -18,6 +18,7 @@
         <module>Kafka</module>
         <module>Zookeeper</module>
         <module>JVM</module>
+        <module>ElasticJobLite</module>
     </modules>
 
     <!-- properties -->

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+      http://www.springframework.org/schema/beans/spring-beans.xsd
+      http://www.springframework.org/schema/context
+      http://www.springframework.org/schema/context/spring-context.xsd">
+
+    <!-- 引入配置文件 -->
+    <!-- <context:property-placeholder location="/WEB-INF/config/DBPool.properties" /> (此方法失效，采用下面bean的方式)-->
+    <!--<bean id="propertyPlaceholderConfigurer" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+        <property name="locations">
+            <list>
+                <value>classpath:config/*.properties</value>
+            </list>
+        </property>
+    </bean>-->
+
+    <!-- 扫描开发包下面的类-->
+    <context:component-scan base-package="org.hisoka.job"/>
+
+    <import resource="classpath*:spring/spring-job.xml"/>
+</beans> 

@@ -8,8 +8,6 @@
     <artifactId>ElasticSearch</artifactId>
     <version>0.0.1-SNAPSHOT</version>
 
-
-
     <properties>
         <jdk.version>1.8</jdk.version>
         <jetty-maven-plugin.version>9.4.2.v20170220</jetty-maven-plugin.version>
