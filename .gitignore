@@ -10,6 +10,8 @@ build.xml
 target/
 # prevent tmp/ should be for dev db and stuff
 tmp/
+# project logs
+*.log
 
 # intellij and sublime stuff
 *.iml

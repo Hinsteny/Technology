@@ -19,6 +19,7 @@
         <module>Zookeeper</module>
         <module>JVM</module>
         <module>ElasticJobLite</module>
+        <module>ElasticJobCloud</module>
     </modules>
 
     <!-- properties -->

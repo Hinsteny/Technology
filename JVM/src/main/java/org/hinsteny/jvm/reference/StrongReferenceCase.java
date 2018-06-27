@@ -9,6 +9,7 @@ package org.hinsteny.jvm.reference;
 public class StrongReferenceCase {
 
     public static void main(String[] args) {
+        String name = new String("hinsteny".toCharArray());
         ReferenceClass referenceCase = ReferenceClass.getReference();
         System.gc();
         System.out.println(referenceCase);
