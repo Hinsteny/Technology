@@ -4,6 +4,7 @@
 
 ## list
 
+- [ElasticJobCloud](https://github.com/Hinsteny/Technology/tree/master/ElasticJobCloud)
 - [ElasticJobLite](https://github.com/Hinsteny/Technology/tree/master/ElasticJobLite)
 - [ElasticSearch](https://github.com/Hinsteny/Technology/tree/master/ElasticSearch)
 - [Jstorm](https://github.com/Hinsteny/Technology/tree/master/Jstorm)
@@ -12,6 +13,7 @@
 - [Rabbitmq](https://github.com/Hinsteny/Technology/tree/master/Rabbitmq)
 - [Zookeeper](https://github.com/Hinsteny/Technology/tree/master/Zookeeper)
 - [JVM](https://github.com/Hinsteny/Technology/tree/master/JVM)
+- [XxlJob](https://github.com/Hinsteny/Technology/tree/master/XxlJob)
 
 
 

@@ -72,8 +72,8 @@
             <version>${spring-version}</version>
             <exclusions>
                 <!--<exclusion>
-                    <groupId>commons-logging</groupId>
-                    <artifactId>commons-logging</artifactId>
+                    <groupId>utils-logging</groupId>
+                    <artifactId>utils-logging</artifactId>
                 </exclusion>-->
             </exclusions>
         </dependency>

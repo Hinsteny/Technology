@@ -20,6 +20,7 @@
         <module>JVM</module>
         <module>ElasticJobLite</module>
         <module>ElasticJobCloud</module>
+        <module>XxlJob</module>
     </modules>
 
     <!-- properties -->

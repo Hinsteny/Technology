@@ -14,6 +14,7 @@ public class MyElasticJob implements SimpleJob {
 
     private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
+    @Override
     public void execute(ShardingContext context) {
         String jobName = context.getJobName();
         String taskId = context.getTaskId();
@@ -21,7 +22,6 @@ public class MyElasticJob implements SimpleJob {
         String jobParam = context.getShardingParameter();
         logger.info("TaskName: {}, taskId: {}, count: {}, jobParam: {}", jobName, taskId,  count, jobParam);
     }
-
 
 }
 

@@ -1,4 +1,4 @@
-package org.hinsteny.jvm.commons;
+package org.hinsteny.jvm.utils;
 
 /**
  * @author Hinsteny
