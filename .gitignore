@@ -25,4 +25,5 @@ tmp/
 # Zookeeper log ignore
 **/logs/
 
-
+# object files
+*.object

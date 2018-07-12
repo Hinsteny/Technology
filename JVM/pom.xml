@@ -12,7 +12,31 @@
     <url>http://maven.apache.org</url>
     <packaging>jar</packaging>
 
+    <properties>
+        <junit.version>4.12</junit.version>
+
+        <fastjson.version>1.2.47</fastjson.version>
+
+        <slf4j-api.version>1.7.13</slf4j-api.version>
+        <log4j.version>2.4.1</log4j.version>
+
+    </properties>
+
     <dependencies>
+        <!-- =========================== Junit test ======================== -->
+        <!-- Junit test -->
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>${junit.version}</version>
+            <!--<scope>test</scope>-->
+        </dependency>
+
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>fastjson</artifactId>
+            <version>${fastjson.version}</version>
+        </dependency>
 
     </dependencies>
 
