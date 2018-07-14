@@ -1,5 +1,7 @@
 package org.hinsteny.jvm.serialization.json;
 
+import com.alibaba.fastjson.annotation.JSONField;
+
 /**
  * @author Hinsteny
  * @version $ID: Person 2018-07-12 21:01 All rights reserved.$
@@ -10,6 +12,12 @@ public class Master {
      * id
      */
     int id;
+
+    /**
+     * 昵称
+     */
+    @JSONField(name = "nick")
+    String nickName;
 
     /**
      * 姓名
@@ -26,8 +34,8 @@ public class Master {
      */
     transient String tools;
 
-    /*private Master() {
-    }*/
+    private Master() {
+    }
 
     public Master(int id, String name, double age, String tools) {
         this.id = id;
@@ -38,6 +46,14 @@ public class Master {
 
     public int getId() {
         return id;
+    }
+
+    public String getNickName() {
+        return nickName;
+    }
+
+    public void setNickName(String nickName) {
+        this.nickName = nickName;
     }
 
     public String getName() {

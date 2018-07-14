@@ -34,9 +34,10 @@ public class Serialize {
     private static void serializeMaster()throws Exception {
         // create one object
         Master master = new Master(1, "ravi", 26.0, "art");
+        master.setNickName("little girl");
         String jsonString = JSON.toJSONString(master);
         master = JSON.parseObject(jsonString, Master.class);
-        System.out.println(String.format("Deserialize Object, id: %s, name: %s, age: %s, tools: %s", master.id, master.name, master.age, master.tools));
+        System.out.println(String.format("Deserialize Object, id: %s, nick: %s, name: %s, age: %s, tools: %s", master.id, master.nickName, master.name, master.age, master.tools));
     }
 
     private static void serializeMasterList()throws Exception {
