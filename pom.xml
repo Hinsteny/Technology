@@ -1,39 +1,62 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
-    <modelVersion>4.0.0</modelVersion>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <modelVersion>4.0.0</modelVersion>
 
-    <groupId>org.hinsteny</groupId>
-    <artifactId>technology</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
-    <packaging>pom</packaging>
+  <groupId>org.hinsteny</groupId>
+  <artifactId>technology</artifactId>
+  <version>0.0.1-SNAPSHOT</version>
+  <packaging>pom</packaging>
 
-    <name>technology</name>
-    <url>https://github.com/Hinsteny/SMD</url>
+  <name>technology</name>
+  <url>https://github.com/Hinsteny/SMD</url>
 
-    <modules>
-        <module>ElasticSearch</module>
-        <module>Jstorm</module>
-        <module>Netty</module>
-        <module>Kafka</module>
-        <module>Zookeeper</module>
-        <module>JVM</module>
-        <module>ElasticJobLite</module>
-        <module>ElasticJobCloud</module>
-        <module>XxlJob</module>
-    </modules>
+  <modules>
+    <module>ElasticSearch</module>
+    <module>Jstorm</module>
+    <module>Netty</module>
+    <module>Kafka</module>
+    <module>Zookeeper</module>
+    <module>JVM</module>
+    <module>ElasticJobLite</module>
+    <module>ElasticJobCloud</module>
+    <module>XxlJob</module>
+  </modules>
 
-    <!-- properties -->
-    <properties>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <project.build.targetJdk>1.8</project.build.targetJdk>
-        <jm.build.jvmsize>1024m</jm.build.jvmsize>
-        <jm.maven.version>3.0.5</jm.maven.version>
-        <maven.compiler.source>1.8</maven.compiler.source>
-        <maven.compiler.target>1.8</maven.compiler.target>
-        <maven.compiler.compilerVersion>1.8</maven.compiler.compilerVersion>
-        <!-- dependency plugin version -->
+  <!-- properties -->
+  <properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <project.build.targetJdk>1.8</project.build.targetJdk>
+    <jm.build.jvmsize>1024m</jm.build.jvmsize>
+    <jm.maven.version>3.0.5</jm.maven.version>
+    <maven.compiler.source>1.8</maven.compiler.source>
+    <maven.compiler.target>1.8</maven.compiler.target>
+    <maven.compiler.compilerVersion>1.8</maven.compiler.compilerVersion>
+    <!-- dependency plugin version -->
+    <buildnumber-maven-plugin.version>1.4</buildnumber-maven-plugin.version>
+    <maven-compiler-plugin.version>3.3</maven-compiler-plugin.version>
+    <maven-resources-plugin.version>3.0.2</maven-resources-plugin.version>
+    <maven-dependency-plugin.version>3.0.2</maven-dependency-plugin.version>
+    <maven-clean-plugin.version>3.0.0</maven-clean-plugin.version>
+    <maven-source-plugin.version>3.0.1</maven-source-plugin.version>
+    <maven-war-plugin.version>3.1.0</maven-war-plugin.version>
 
-    </properties>
+  </properties>
+
+  <build>
+    <pluginManagement>
+      <plugins>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-resources-plugin</artifactId>
+          <version>${maven-compiler-plugin.version}</version>
+          <configuration>
+            <encoding>UTF-8</encoding>
+          </configuration>
+        </plugin>
+      </plugins>
+    </pluginManagement>
+  </build>
 
 </project>

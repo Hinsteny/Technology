@@ -14,7 +14,7 @@
         <jetty-maven-plugin.version>9.4.2.v20170220</jetty-maven-plugin.version>
         <junit.version>4.12</junit.version>
         <confluent.version>2.0.1</confluent.version>
-        <kafka-clients.version>0.11.0.0</kafka-clients.version>
+        <kafka-clients.version>2.0.0</kafka-clients.version>
 
         <slf4j-api.version>1.7.25</slf4j-api.version>
         <log4j.version>2.9.0</log4j.version>
