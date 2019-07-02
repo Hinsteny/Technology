@@ -2,6 +2,7 @@ package org.hinsteny.jvm.reentrantlock;
 
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
+import java.util.function.Function;
 
 /**
  * fair lock example
@@ -16,12 +17,20 @@ public class FairLock extends Parent {
      */
     public static void main(String[] args) {
         Lock lock = new ReentrantLock(true);
-        Thread work_one = buildWorkThread(lock, buildWork());
-        Thread work_two = buildWorkThread(lock, buildWork());
-        Thread work_three = buildWorkThread(lock, buildWork());
-        work_one.start();
-        work_two.start();
-        work_three.start();
+        multiThreadAcquireMutexLock(5, lock);
     }
+
+    /**
+     *
+     * @param jobsNumber
+     * @param lock
+     */
+    private static void multiThreadAcquireMutexLock(int jobsNumber, Lock lock) {
+        while (jobsNumber-- > 0) {
+            Function<Lock, Integer> function = buildWorkTaskWithLock(jobsNumber);
+            new Thread(new JobThread(function, lock)).start();
+        }
+    }
+
 
 }

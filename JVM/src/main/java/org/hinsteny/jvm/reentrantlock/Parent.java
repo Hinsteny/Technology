@@ -1,5 +1,6 @@
 package org.hinsteny.jvm.reentrantlock;
 
+import java.util.concurrent.TimeUnit;
 import java.util.concurrent.locks.Lock;
 import java.util.function.Function;
 
@@ -12,41 +13,72 @@ public class Parent {
     private static Integer score = 0;
 
     /**
-     * build work content
-     * @return
+     * build one work thread
+     *
+     * @param number job-number
      */
-    protected static Function<Long, Boolean> buildWork() {
-        return (threadId)->{
-            boolean flag = score < 99 ? false : true;
-            if (!flag) {
-                ++score;
-                System.out.println(String.format("%s thread add score to %s", threadId, score));
+    protected static Function<Lock, Integer> buildWorkTaskWithLock(final int number) {
+        return (lock) -> {
+            long id = number;
+            System.out.println(String.format("%s thread need get lock", id));
+            lock.lock();
+            try {
+                System.out.println(String.format("%s thread obtained the lock", id));
+                Thread.sleep(1000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            } finally {
+                lock.unlock();
             }
-            return flag;
+            System.out.println(String.format("%s thread exit", id));
+            return number;
         };
     }
 
     /**
      * build one work thread
      *
-     * @param lock
-     * @return
+     * @param action job
+     * @return work task
      */
-    protected static Thread buildWorkThread(final Lock lock, final Function<Long, Boolean> action) {
-        return new Thread(() -> {
-            int count = 0;
+    protected static Function<Lock, Integer> buildWorkTaskWithTryLock(final Function<Long, Boolean> action) {
+        return (lock) -> {
             long id = Thread.currentThread().getId();
-            boolean escape = action.apply(id);
+            int count = 0;
+            boolean escape = false;
             while (!escape) {
                 System.out.println(String.format("%s thread need get lock", id));
-                lock.lock();
+                try {
+                    lock.tryLock(3, TimeUnit.SECONDS);
+                } catch (InterruptedException e) {
+                    System.out.println(e);
+                    break;
+                }
                 count++;
                 escape = action.apply(id);
                 System.out.println(String.format("%s thread obtained the lock, escape is: %s", id, escape));
                 lock.unlock();
             }
             System.out.println(String.format("%s thread exit count is %s", id, count));
-        });
+            return count;
+        };
+    }
+
+    protected static class JobThread implements Runnable {
+
+        private Function<Lock, Integer> job;
+
+        private Lock lock;
+
+        public JobThread(Function<Lock, Integer> job, Lock lock) {
+            this.job = job;
+            this.lock = lock;
+        }
+
+        @Override
+        public void run() {
+            job.apply(lock);
+        }
     }
 
 }
