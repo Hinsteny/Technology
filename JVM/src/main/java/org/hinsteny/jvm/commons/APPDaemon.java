@@ -10,11 +10,11 @@ import java.time.LocalDateTime;
  * @author Hinsteny
  * @version $ID: MyAPP 2018-06-30 13:17 All rights reserved.$
  */
-public class MyAPP {
+public class APPDaemon {
 
     public static void main(String[] args) {
         System.out.println("starting app main tread, am i daemon " + Thread.currentThread().isDaemon());
-//        startDaemonThread();
+        startDaemonThread();
         startUserThread();
         System.out.println("stop app main thread ");
 //        System.exit(0);
@@ -41,7 +41,10 @@ public class MyAPP {
         new Thread(() -> {
             System.out.println("I am user thread, i started");
             try {
-                while (true) {
+                int count = 0;
+//                while (true) {
+                while (count < 10) {
+                    count++;
                     System.out.println(LocalDateTime.now());
                     Thread.sleep(1000);
                 }
