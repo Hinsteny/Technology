@@ -2,6 +2,7 @@ package org.hinsteny.jvm.generic;
 
 import java.util.ArrayList;
 import java.util.List;
+import org.hinsteny.jvm.generic.data.ManMathTeacher;
 import org.hinsteny.jvm.generic.data.MathTeacher;
 import org.hinsteny.jvm.generic.data.Teacher;
 
@@ -12,38 +13,55 @@ import org.hinsteny.jvm.generic.data.Teacher;
 public class GenericListCombine {
 
   public static void main(String[] args) {
-    arraysExample();
-    arraysGenericExample();
+    // 取值
+    getFromArraysExample();
+
+    //存值
+    putToArraysExample();
   }
 
-  private static void arraysExample() {
+  private static void getFromArraysExample() {
     List<Teacher> teachers = new ArrayList<>();
-    printArraysExample(teachers);
+    printGetFromArraysExample(teachers);
     List<MathTeacher> mathTeachers = new ArrayList<>();
     // 下面这个就编译不过
-//    printArraysExample(mathTeachers);
-
-  }
-
-  private static void printArraysExample(List<Teacher> teachers) {
-    for (Teacher teacher : teachers) {
-      System.out.println(teacher.getName());
-    }
-  }
-
-  private static void arraysGenericExample() {
-    List<Teacher> teachers = new ArrayList<>();
-    printArraysGenericExample(teachers);
-    List<MathTeacher> mathTeachers = new ArrayList<>();
+//    printGetFromArraysExample(mathTeachers);
     // 下面这个就能编译
-    printArraysGenericExample(mathTeachers);
+    printGetFromArraysGenericExample(mathTeachers);
 
   }
 
-  private static void printArraysGenericExample(List<? extends Teacher> teachers) {
+  private static void printGetFromArraysExample(List<Teacher> teachers) {
     for (Teacher teacher : teachers) {
       System.out.println(teacher.getName());
     }
+  }
+
+  private static void printGetFromArraysGenericExample(List<? extends Teacher> teachers) {
+    for (Teacher teacher : teachers) {
+      System.out.println(teacher.getName());
+    }
+  }
+
+  private static void putToArraysExample() {
+    List<MathTeacher> mathTeachers = new ArrayList<>();
+    putToArraysExample(mathTeachers);
+    List<Teacher> teachers = new ArrayList<>();
+    // 下面这个就编译不过
+//    putToArraysExample(teachers);
+    // 下面这个就能编译
+    putToArraysGenericExample(teachers);
+
+  }
+
+  private static void putToArraysExample(List<MathTeacher> teachers) {
+    teachers.add(new MathTeacher());
+    teachers.add(new ManMathTeacher());
+  }
+
+  private static void putToArraysGenericExample(List< ? super MathTeacher> teachers) {
+    teachers.add(new MathTeacher());
+    teachers.add(new ManMathTeacher());
   }
 
 }

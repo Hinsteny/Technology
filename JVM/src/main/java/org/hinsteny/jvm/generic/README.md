@@ -30,7 +30,11 @@ single class declaration, a set of related types, respectively!**
     逆变: 父类能向子类转换 Teacher teacher = (Teacher)person; // 报错
     不变: 两者均不能转变
 ```
-   要解决数组协变与泛型不变的结合问题，还是使用泛型边界 参考 
+   要解决数组协变与泛型不变的结合问题，还是使用泛型边界 参考 GenericListCombine 
+5. 泛型擦除的边界有时可能导致编译通过的代码在执行时却报错了，参考 GenericBoundaryCallError
+6. 泛型会导致泛型接口子类的子类不能同时实现泛型接口，参考 StudentPlay
+7. 自限定类型简单点说就是将泛型的类型限制为自己以及自己的子类,
+   主要在父类方法里面可以拿到父类的类型 参考
    
 
 

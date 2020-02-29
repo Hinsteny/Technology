@@ -6,11 +6,7 @@ package org.hinsteny.jvm.generic.data;
  */
 public class MathTeacher extends Teacher {
 
-  private String course;
-
-  public MathTeacher(String course) {
-    this.course = course;
-  }
+  private String course = "math";
 
   public String getCourse() {
     return course;
