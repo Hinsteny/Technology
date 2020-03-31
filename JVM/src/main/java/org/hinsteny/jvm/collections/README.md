@@ -34,5 +34,27 @@ java.util 包中有以下接口及工具类:
   HashMap非线程安全, 正常的容量扩容发生在插入一个元素后, 发现容器内元素总个数超过需要rehash的数值, 就进行rehash; 然后在rehash过程中, 先new一个扩容后的新数组, 然后将HashMap中的数组引用指向新数组, 
   所以这里并发访问虽然不会发生程序异常, 但是可能会查询不到一个实际存在于HashMap中的元素;
 ```
-2. 
-3.  
+2. 常见排序算法比较
+
+|排序方法|时间复杂度（平均）|时间复杂度（最坏）|时间复杂度（最好）|空间复杂度|稳定性|
+|---|---|---|---|---|---|
+|冒泡排序|O(n2)O(n2)|O(n2)O(n2)|O(n)O(n)|O(1)O(1)|稳定|
+|选择排序|O(n2)O(n2)|O(n2)O(n2)|O(n2)O(n2)|O(1)O(1)|不稳定|
+|插入排序|O(n2)O(n2)|O(n2)O(n2)|O(n)O(n)|O(1)O(1)|稳定|
+|二分插入排序|O(nlog2n)|O(n2)|O(log2n)|O(n+k)|稳定|
+|希尔排序|O(n1.3)O(n1.3)|O(n2)O(n2)|O(n)O(n)|O(1)O(1)|不稳定|
+|快速排序|O(nlog2n)O(nlog2n)|O(n2)O(n2)|O(nlog2n)O(nlog2n)|O(nlog2n)O(nlog2n)|不稳定|
+|归并排序|O(nlog2n)O(nlog2n)|O(nlog2n)O(nlog2n)|O(nlog2n)O(nlog2n)|O(n)O(n)|稳定|
+|堆排序|O(nlog2n)O(nlog2n)|O(nlog2n)O(nlog2n)|O(nlog2n)O(nlog2n)|O(1)O(1)|不稳定|
+|基数排序|O(n∗k)O(n∗k)|O(n∗k)O(n∗k)|O(n∗k)O(n∗k)|O(n+k)O(n+k)|稳定|
+
+
+3.  List相关实现类的排序效果
+
+| List  | 是否有序 | 排序方法| 排序是否稳定|
+|---|---|---|---|
+| ArrayList(Vector) | 是 |归并排序 | 是|
+| LinkedList | 是 |归并排序 | 是|
+| TreeSet | 是 | 二叉树| X|
+| TreeMap | 是 | 二叉树| X|
+
