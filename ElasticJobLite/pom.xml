@@ -20,7 +20,7 @@
         <elastic-job.version>2.1.5</elastic-job.version>
 
         <slf4j-api.version>1.7.25</slf4j-api.version>
-        <log4j.version>2.9.0</log4j.version>
+        <log4j.version>2.13.3</log4j.version>
         <testng.version>6.13.1</testng.version>
     </properties>
 
