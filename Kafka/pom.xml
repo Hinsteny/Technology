@@ -17,7 +17,7 @@
         <kafka-clients.version>2.0.0</kafka-clients.version>
 
         <slf4j-api.version>1.7.25</slf4j-api.version>
-        <log4j.version>2.9.0</log4j.version>
+        <log4j.version>2.15.0</log4j.version>
     </properties>
 
     <build>
