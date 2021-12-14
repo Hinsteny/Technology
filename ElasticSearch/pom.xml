@@ -16,7 +16,7 @@
         <elasticsearch-client.version>5.6.2</elasticsearch-client.version>
 
         <slf4j-api.version>1.7.25</slf4j-api.version>
-        <log4j.version>2.9.0</log4j.version>
+        <log4j.version>2.16.0</log4j.version>
     </properties>
 
     <build>
