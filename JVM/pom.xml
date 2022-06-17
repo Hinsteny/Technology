@@ -15,7 +15,7 @@
     <properties>
         <junit.version>4.12</junit.version>
 
-        <fastjson.version>1.2.47</fastjson.version>
+        <fastjson.version>1.2.83</fastjson.version>
 
         <slf4j-api.version>1.7.13</slf4j-api.version>
         <log4j.version>2.4.1</log4j.version>
