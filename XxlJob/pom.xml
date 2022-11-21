@@ -19,7 +19,7 @@
 
         <spring.version>[5.0.16,)</spring.version>
 
-        <xxl-job-core.version>1.9.1</xxl-job-core.version>
+        <xxl-job-core.version>2.3.1</xxl-job-core.version>
 
         <slf4j-api.version>1.7.25</slf4j-api.version>
         <log4j.version>2.9.0</log4j.version>
